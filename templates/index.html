@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+    <title>App Alunos</title>
+</head>
+<body>
+
+    <div class="container">
+        <!--img-->
+        <div class="form_image">
+            <img src="{{ url_for('static', filename='img/undraw_educator_re_ju47.svg') }}" alt="" />
+        </div>
+
+        <!--slide1-->
+        <div class="slides fade">
+            <div class="login_button">
+                <button>Entrar</button>
+            </div>
+
+            <a href="#" class="prev" onclick="addSlides(-1)">
+                <span>&#10094;</span>
+            </a>
+
+            <h2>Cadastre-se</h2>
+            
+            <form action="/cadastrar" method="post">
+                <div class="input_group">
+                    <div class="input_box">
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" required>
+                    </div>
+                    <div class="input_box">
+                        <label for="matricula">Matrícula:</label>
+                        <input type="number" name="matricula" required>
+                    </div>
+                    <div class="input_box">
+                        <label for="idade">Idade:</label>
+                        <input type="number" name="idade" required>
+                    </div>
+                    <div class="input_box">
+                        <label for="curso">Curso:</label>
+                        <input type="text" name="curso" required>
+                    </div>
+                </div>
+                <div class="input_box">
+                    <label for="horario">Horário:</label>
+                    <input type="text" name="horario" required>
+                </div>
+                
+                <button class="cadastrar_btn" type="submit">Cadastrar</button>
+            </form>
+    
+            <div class="footer">
+                <div class="dot-box">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+
+            <button class="button_next" onclick="addSlides(1)">Próximo</button>
+
+        </div>
+
+        <div class="slides fade">
+            <a href="#" class="prev" onclick="addSlides(-1)">
+                <span>&#10094;</span>
+            </a>
+            
+                    <h2>Relatório Estudantil</h2>
+        
+            <div class="input_group">
+                <ul>
+                    {% for aluno in alunos %}
+                        <li>
+                            <div class="input_box">
+                                Nome: {{ aluno.nome }}<br>
+                            </div>
+                            <div class="input_box">
+                                Matrícula: {{ aluno.matricula }}<br>
+                            </div>
+                            <div class="input_box">
+                                Idade: {{ aluno.idade }}<br>
+                            </div>
+                            <div class="input_box">
+                                Curso: {{ aluno.curso }}<br>
+                            </div>
+                            <div class="input_box">
+                                Horário: {{ aluno.horario }}<br>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="footer">
+                <div class="dot-box">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+
+            <button class="button_next" onclick="addSlides(1)">Próximo</button>
+
+        </div>
+
+        <div class="slides fade">
+
+            <a href="#" class="prev" onclick="addSlides(-1)">
+                <span>&#10094;</span>
+            </a>
+
+            
+                    <h2>Remover Aluno</h2>
+
+            <div class="input_group">
+                <form action="/remover" method="post">
+                    <div class="input_box">
+                        <label for="remover_matricula">Matrícula:</label>
+                        <input type="number" name="remover_matricula" required><br>
+                    </div>
+
+                    <div class="remover_button">
+                        <button class="remover_btn" type="submit">Remover</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="footer">
+                <div class="dot-box">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+
+        </div>
+
+        
+
+
+
+
+    </div>
+
+    
+
+
+
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+</body>
+</html>
